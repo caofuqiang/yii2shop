@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>名称</th>
+            <th>省</th>
+            <th>市</th>
+            <th>县</th>
+            <th>详细地址</th>
+            <th>电话</th>
+        </tr>
+
+    </table>
+    <script>
+        $.getJSON('http://www.yii2shop.com/api/get-address-by.html',{address_id:1},function(json){
+            // console.log(json);
+            $(json.data).each(function(){
+                var html = '<tr>';
+                //console.log(this.name);
+                html += '<td>'+this.name+'</td>';
+                html += '<td>'+this.province+'</td>';
+                html += '<td>'+this.city+'</td>';
+                html += '<td>'+this.area+'</td>';
+                html += '<td>'+this.detail+'</td>';
+                html += '<td>'+this.tel+'</td>';
+                //html += '<td><img src="'+this.logo+'" width="50px" /></td>';
+                html += '</tr>';
+                $("table").append(html);
+            });
+        });
+    </script>
+</body>
+</html>

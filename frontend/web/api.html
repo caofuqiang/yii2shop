@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>商品名称</th>
+        <th>商品价格</th>
+        <th>商品货号</th>
+        <th>商品logo</th>
+    </tr>
+
+</table>
+<script>
+    $.getJSON('http://www.yii2shop.com/api/get-goods-by-brand.html',{brand_id:1},function(json){
+       // console.log(json);
+        $(json.data).each(function(){
+            var html = '<tr>';
+            //console.log(this.name);
+            html += '<td>'+this.name+'</td>';
+            html += '<td>'+this.shop_price+'</td>';
+            html += '<td>'+this.sn+'</td>';
+            html += '<td><img src="'+this.logo+'" width="50px" /></td>';
+            html += '</tr>';
+            $("table").append(html);
+        });
+    });
+</script>
+</body>
+</html>
